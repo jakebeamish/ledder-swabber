@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ledder swabber</title>
+
+    <style>
+        body {
+            color: black;
+            background-color: white;
+            margin: 40px auto;
+            max-width: 400px;
+            padding: 0;
+        }
+
+        [contenteditable] {
+            outline: 0px solid transparent;
+        }
+
+        #input {
+            position: absolute;
+            top: 90vh;
+            height: 1.1em;
+            width: 400px;
+            font-size: small;
+            display: inline-block;
+            white-space: pre-wrap;
+            overflow: hidden;
+            font-family: monospace;
+        }
+
+        #output {
+            font-family: sans-serif;
+            font-size: 1.4em;
+            line-height: 2rem;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <div contenteditable="true" id="input" tabindex="0" autofocus ></div>
+
+    <div id="output"><i>This wepsite is for swabbing ledders.</i><br>Don't click anything, just start typing...</div>
+    <script>
+
+        let input = document.getElementById("input");
+        let output = document.getElementById("output");
+
+        input.addEventListener("input", function () {
+            const inputText = input.innerText;
+
+            let outputText = "";
+
+            for (let i = 0; i < inputText.length; i++) {
+                let c = inputText.charAt(i);
+                if (c == "d") c = "t";
+                else if (c == "t") c = "d";
+                else if (c == "p") c = "b";
+                else if (c == "b") c = "p";
+                else if (c == "D") c = "T";
+                else if (c == "T") c = "D";
+                else if (c == "P") c = "B";
+                else if (c == "B") c = "P";
+                outputText += c;
+            }
+
+            output.innerText = outputText;
+
+        }, false);
+    </script>
+</body>
+
+</html>
